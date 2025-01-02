@@ -40,7 +40,7 @@ archive_override(
 nccl = use_extension("@rules_nccl//nccl:extensions.bzl", "toolchain")
 nccl.local_toolchain(
     name = "local_nccl",
-    toolkit_path = "",
+    nccl_path = "",
 )
 use_repo(nccl, "local_nccl")
 ```

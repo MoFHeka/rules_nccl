@@ -111,7 +111,7 @@ def config_local_nccl(repository_ctx, nccl):
         # TODO(MoFHeka): Build a github NCCL repo here using rules_cuda
         repository_ctx.symlink(Label("//nccl:templates/BUILD.local_nccl_disabled"), "BUILD")
     elif is_local_nccl:
-        libpath = "lib64" if _is_linux(repository_ctx) else "lib"
+        libpath = "lib"
         template_helper.generate_build(repository_ctx, libpath)
     else:
         fail("local nccl dependencies is not implemented")

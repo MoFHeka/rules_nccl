@@ -15,8 +15,8 @@ nccl.nccl_dependencie(
 )
 use_repo(nccl, "local_nccl")
 
-bazel_dep(name = "rules_cuda", version = "0.2.1")
-cuda = use_extension("@rules_cuda//cuda:extensions.bzl", "toolchain")
+bazel_dep(name = "rules_cuda", version = "0.2.1", dev_dependency = True)
+cuda = use_extension("@rules_cuda//cuda:extensions.bzl", "toolchain", dev_dependency = True)
 cuda.local_toolchain(
     name = "local_cuda",
 )

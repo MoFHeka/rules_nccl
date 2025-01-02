@@ -5,7 +5,7 @@ cc_import_versioned_sos(
 
 cc_import(
     name = "nccl_lib",
-    interface_library = "%{component_name}/%{libpath}/x64/nccl.lib",
+    interface_library = "%{component_name}/%{libpath}/nccl.lib",
     system_provided = 1,
     target_compatible_with = ["@platforms//os:windows"],
 )
