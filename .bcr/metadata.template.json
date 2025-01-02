@@ -1,0 +1,13 @@
+{
+  "homepage": "https://github.com/MoFHeka/rules_nccl",
+  "maintainers": [
+    {
+      "email": "mofhejia@163.com",
+      "github": "MoFHeka",
+      "name": "Jia He"
+    }
+  ],
+  "repository": ["github:MoFHeka/rules_nccl"],
+  "versions": [],
+  "yanked_versions": {}
+}
