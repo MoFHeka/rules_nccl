@@ -1,0 +1,21 @@
+load(":nccl_import_test.bzl", "nccl_import_test_suite")
+
+nccl_import_test_suite()
+
+cc_test(
+    name = "nccl_link_test",
+    srcs = ["nccl_test.cc"],
+    deps = [
+        "@local_nccl//:nccl_runtime",
+        "@rules_cuda//cuda:runtime",
+    ],
+)
+
+cc_test(
+    name = "nccl_static_link_test",
+    srcs = ["nccl_test.cc"],
+    deps = [
+        "@local_nccl//:nccl_runtime_static",
+        "@rules_cuda//cuda:runtime",
+    ],
+)

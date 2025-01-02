@@ -1,0 +1,53 @@
+cc_import_versioned_sos(
+    name = "nccl_so",
+    shared_library = "%{component_name}/%{libpath}/libnccl.so",
+)
+
+cc_import(
+    name = "nccl_lib",
+    interface_library = "%{component_name}/%{libpath}/x64/nccl.lib",
+    system_provided = 1,
+    target_compatible_with = ["@platforms//os:windows"],
+)
+
+# Note: do not use this target directly, use the configurable label_flag
+# @rules_nccl//nccl:runtime instead.
+cc_library(
+    name = "nccl_runtime",
+    linkopts = if_linux([
+        "-ldl",
+        "-lpthread",
+        "-lrt",
+    ]),
+    deps = [
+        ":%{component_name}_headers",
+    ] + if_linux([
+        ":nccl_so",
+    ]) + if_windows([
+        ":nccl_lib",
+    ]),
+    # FIXME:
+    # visibility = ["@rules_nccl//nccl:__pkg__"],
+)
+
+# Note: do not use this target directly, use the configurable label_flag
+# @rules_nccl//nccl:runtime instead.
+cc_library(
+    name = "nccl_runtime_static",
+    srcs = ["%{component_name}/%{libpath}/libnccl_static.a"],
+    hdrs = [":%{component_name}_header_files"],
+    includes = ["%{component_name}/include"],
+    linkopts = if_linux([
+        "-ldl",
+        "-lpthread",
+        "-lrt",
+    ]),
+    # FIXME:
+    # visibility = ["@rules_nccl//nccl:__pkg__"],
+)
+
+cc_library(
+    name = "no_nccl_runtime",
+    # FIXME:
+    # visibility = ["@rules_nccl//nccl:__pkg__"],
+)

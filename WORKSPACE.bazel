@@ -1,0 +1,5 @@
+workspace(name = "rules_nccl")
+
+load("//nccl:repositories.bzl", "rules_nccl_dependencies")
+
+rules_nccl_dependencies()
